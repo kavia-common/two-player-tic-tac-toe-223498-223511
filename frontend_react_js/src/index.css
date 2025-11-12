@@ -104,6 +104,12 @@ body {
   color: var(--text);
 }
 
+.controls label,
+.controls span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
 .restart-btn {
   margin-top: 18px;
   padding: 12px 18px;
