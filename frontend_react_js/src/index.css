@@ -1,13 +1,144 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --primary: #3b82f6;
+  --accent: #06b6d4;
+  --text: #111827;
+  --surface: #ffffff;
+  --muted: #64748b;
+  --ring: 0 0 0 3px;
+  --radius: 12px;
+
+  --square-size: min(28vw, 110px);
+  --square-gap: 10px;
+
+  color-scheme: light;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, rgba(59,130,246,0.06) 0%, rgba(249,250,251,1) 35%);
+}
+
+.game-app {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.game-container {
+  width: 100%;
+  max-width: 520px;
+  padding: 24px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--surface);
+}
+
+.game-title {
+  margin: 0 0 16px;
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.board {
+  display: grid;
+  gap: var(--square-gap);
+}
+
+.board-row {
+  display: grid;
+  grid-template-columns: repeat(3, var(--square-size));
+  gap: var(--square-gap);
+  justify-content: center;
+}
+
+.square {
+  width: var(--square-size);
+  height: var(--square-size);
+  background: #fff;
+  border: 2px solid rgba(100, 116, 139, 0.25);
+  border-radius: var(--radius);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.05s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  will-change: transform;
+  outline: none;
+}
+
+.square:hover {
+  border-color: var(--primary);
+  box-shadow: 0 1px 0 rgba(17, 24, 39, 0.02), 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.square:active {
+  transform: scale(0.98);
+}
+
+.square:focus-visible {
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.35);
+  border-color: var(--accent);
+}
+
+.square-winning {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.08));
+}
+
+.square-value {
+  font-size: clamp(28px, 10vw, 48px);
+  font-weight: 800;
+  color: var(--text);
+}
+
+.restart-btn {
+  margin-top: 18px;
+  padding: 12px 18px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.05s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25), 0 2px 6px rgba(59,130,246,0.15);
+}
+
+.restart-btn:hover {
+  filter: brightness(1.04);
+}
+
+.restart-btn:active {
+  transform: translateY(1px);
+}
+
+.restart-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(6,182,212,0.35), 0 8px 20px rgba(59, 130, 246, 0.25);
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
